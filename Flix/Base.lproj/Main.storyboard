@@ -150,11 +150,11 @@
             </objects>
             <point key="canvasLocation" x="-133" y="1556"/>
         </scene>
-        <!--Item-->
+        <!--Now Playing-->
         <scene sceneID="w6J-BP-7uh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zaF-FB-k04" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="FRZ-XW-SZP"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="now_playing_tabbar_item" id="FRZ-XW-SZP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9KU-Pp-QkY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -169,11 +169,11 @@
             </objects>
             <point key="canvasLocation" x="-133.33333333333334" y="154.6875"/>
         </scene>
-        <!--Item-->
+        <!--Grid View-->
         <scene sceneID="1po-E7-u7h">
             <objects>
                 <navigationController id="MZ9-NP-qCV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="SNV-9T-E5L"/>
+                    <tabBarItem key="tabBarItem" title="Grid View" image="reel_tabbar_icon" id="SNV-9T-E5L"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wRD-ex-2x1">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -194,31 +194,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l4x-wA-3hF">
-                                <rect key="frame" x="0.0" y="34" width="414" height="862"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l4x-wA-3hF">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pvy-hA-yhV">
-                                    <size key="itemSize" width="181" height="315"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pvy-hA-yhV">
+                                    <size key="itemSize" width="170" height="320"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionCell" id="n50-jy-Wdn" customClass="MovieCollectionCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="181" height="315"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="374"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Fb5-aW-sI1">
-                                            <rect key="frame" x="0.0" y="0.0" width="181" height="315"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="374"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVm-g3-TZL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="181" height="315"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="374"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="181" height="315"/>
+                                        <size key="customSize" width="170" height="374"/>
                                         <connections>
                                             <outlet property="posterView" destination="PVm-g3-TZL" id="zWn-ta-asP"/>
                                         </connections>
@@ -228,6 +227,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iq7-JH-pmx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l4x-wA-3hF" firstAttribute="leading" secondItem="iq7-JH-pmx" secondAttribute="leading" id="VYI-6e-zqj"/>
+                            <constraint firstAttribute="bottom" secondItem="l4x-wA-3hF" secondAttribute="bottom" id="hrd-Mt-UbV"/>
+                            <constraint firstItem="l4x-wA-3hF" firstAttribute="top" secondItem="6HY-dL-KMU" secondAttribute="top" id="kQ9-I2-OJN"/>
+                            <constraint firstItem="l4x-wA-3hF" firstAttribute="trailing" secondItem="iq7-JH-pmx" secondAttribute="trailing" id="tmP-pj-lKG"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tsZ-jl-Pd3"/>
                     <connections>
@@ -240,6 +245,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="now_playing_tabbar_item" width="21" height="21"/>
+        <image name="reel_tabbar_icon" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
