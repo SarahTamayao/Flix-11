@@ -6,6 +6,9 @@
 //
 
 #import "MoviesViewController.h"
+#import "MovieCell.h"
+#import "DetailsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -15,6 +18,10 @@
 // strong means this variable will retain its value over time ? (wasn't explained clearly)
 // nonatomic - this will be common for us (also wasn't explained)
 @property (nonatomic, strong) NSArray *movies;
+
+// UIRefreshControl is an object that handles refreshing
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -26,6 +33,25 @@
     self.tableView.delegate = self;
     // Do any additional setup after loading the view.
     
+    // start Animating while fetch movies is happening
+    [self.loadingIndicator startAnimating];
+    [self fetchMovies];
+    
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    // use @selector to specify which function an action calls
+    // addTarget is being applied to refreshControl
+    // forControlEvents specifies what triggers this refresh control, so in this case when refreshing event changes (someone pulls down) it starts the action
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    
+    // addSubview places the refreshing component on top of the current highest component
+    //[self.tableView addSubview:self.refreshControl];
+    
+    // insertSubview place the refreshing component at a specified Z index
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)fetchMovies{
     // Network Request --> Upon the screen loading it immediately makes a network call
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -34,7 +60,23 @@
     // Completion Handler -> contains an Objective-C BLOCK inside of the { }
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
-               NSLog(@"%@", [error localizedDescription]);
+               // ERROR here means no internet connection
+               // Creates the alert modal
+               UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
+               
+               // create an OK action
+               UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                       [self fetchMovies];// handles reponse here
+                   }];
+               // add the OK action to the alert controller
+               [alert addAction:okAction];
+               
+               // shows the UIAlertController on the storyboard
+               [self presentViewController:alert animated:YES completion:^{
+                   // optional code for what happens after the alert controller has finished presenting
+               }];
+               
+               // NSLog(@"%@", [error localizedDescription]);
            }
            else {
                // NSDictionary is dict data structure
@@ -47,6 +89,7 @@
                self.movies = dataDictionary[@"results"];
                [self.tableView reloadData];
            }
+        [self.refreshControl endRefreshing];
        }];
     [task resume];
 }
@@ -58,22 +101,44 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // IMPORTANT LINE
     // Alloc vs init ?
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    // Alloc actually creates space for something in memory
+    // Init brings this said memory into your Storyboard
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     NSDictionary *movie = self.movies[indexPath.row];
-    cell.textLabel.text = movie[@"title"];
+    cell.titleLabel.text = movie[@"title"];
+    cell.synopsisLabel.text = movie[@"overview"];
     
+    // Setting up the url which combines a base url string and the path returned from the api for a given cell
+    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString *posterURLString = movie[@"poster_path"];
+    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+    
+    // Basically the same as NSString except it checks first if the string is a valid URL
+    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
+    // clear the image so you immediately start downloading the current one
+    cell.posterView.image = nil;
+    [cell.posterView setImageWithURL:posterURL];
+    // STOP ANIMATION AFTER the second network request which retrieves photo from url :)
+    [self.loadingIndicator stopAnimating];
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UITableViewCell *tappedCell = sender;
+    // Finding index path to access the dict row
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    DetailsViewController *detailViewController = [segue destinationViewController];
+    detailViewController.movie = movie;
 }
-*/
+
 
 @end
