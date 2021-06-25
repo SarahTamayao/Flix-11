@@ -7,6 +7,7 @@
 
 #import "MoviesGridViewController.h"
 #import "MovieCollectionCell.h"
+#import "DetailsPlusViewController.h"
 #import "UIImageView+AFNetworking.h" // category methods that are added to augment UIImageView
 
 @interface MoviesGridViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
@@ -36,7 +37,7 @@
     CGFloat postersPerLine = 2;
     CGFloat itemWidth = ((self.collectionView.frame.size.width - layout.minimumInteritemSpacing) * (postersPerLine-1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
-    layout.itemSize = CGSizeMake(itemWidth - 20, itemHeight);
+    layout.itemSize = CGSizeMake(itemWidth - 15, itemHeight);
 }
 
 - (void)fetchMovies{
@@ -116,6 +117,21 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.movies.count;
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    UICollectionViewCell *tappedCell = sender;
+    // Finding index path to access the dict row
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    DetailsPlusViewController *detailPlusViewController = [segue destinationViewController];
+    detailPlusViewController.movie = movie;
 }
 
 @end
