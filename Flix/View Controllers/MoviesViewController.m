@@ -10,7 +10,7 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 // In Objective-C, @property creates a private instance variable and also automatically creates a getter and setter method for you
@@ -18,10 +18,13 @@
 // strong means this variable will retain its value over time ? (wasn't explained clearly)
 // nonatomic - this will be common for us (also wasn't explained)
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) NSArray *filteredMovies;
 
 // UIRefreshControl is an object that handles refreshing
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBarLabel;
+
 
 @end
 
@@ -29,8 +32,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"purp_gradient.png"]]];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.searchBarLabel.delegate = self;
     // Do any additional setup after loading the view.
     
     // start Animating while fetch movies is happening
@@ -87,6 +92,7 @@
                // TODO: Reload your table view data
                // results is one key of the many that the api returns
                self.movies = dataDictionary[@"results"];
+               self.filteredMovies = self.movies;
                [self.tableView reloadData];
            }
         [self.refreshControl endRefreshing];
@@ -95,7 +101,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    return self.filteredMovies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,13 +111,14 @@
     // Init brings this said memory into your Storyboard
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredMovies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
     
     // Setting up the url which combines a base url string and the path returned from the api for a given cell
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
+    // NSLog(posterURLString);
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     
     // Basically the same as NSString except it checks first if the string is a valid URL
@@ -124,6 +131,33 @@
     return cell;
 }
 
+// for search bar
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        
+        // checks if title contains a char
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@)", searchText];
+        self.filteredMovies = [self.movies filteredArrayUsingPredicate:predicate];
+        NSLog(@"%@", self.filteredMovies);
+                
+    }
+    else {
+        self.filteredMovies = self.movies;
+    }
+    
+    [self.tableView reloadData];
+ 
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBarLabel.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBarLabel.showsCancelButton = NO;
+    self.searchBarLabel.text = @"";
+    [self.searchBarLabel resignFirstResponder];
+}
 
 #pragma mark - Navigation
 

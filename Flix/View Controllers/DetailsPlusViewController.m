@@ -24,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Somehow this set every background... not sure why this applies to every viewController, but maybe I'll learn why at some point
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"purp_gradient.png"]]];
     // rounded corners for backgroundShape
     //self.backgroundShape.clipsToBounds = TRUE;
     self.backgroundShape.layer.cornerRadius = 5;
