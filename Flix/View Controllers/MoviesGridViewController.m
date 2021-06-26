@@ -111,6 +111,7 @@
     // clear the image so you immediately start downloading the current one
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
+    cell.posterView.layer.cornerRadius = 5;
     
     return cell;
 }

@@ -113,6 +113,7 @@
     
     NSDictionary *movie = self.filteredMovies[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
+    [cell.titleLabel setText:[cell.titleLabel.text uppercaseString]];
     cell.synopsisLabel.text = movie[@"overview"];
     
     // Setting up the url which combines a base url string and the path returned from the api for a given cell
@@ -127,6 +128,7 @@
     cell.posterView.image = nil;
     [cell.posterView setImageWithURL:posterURL];
     // STOP ANIMATION AFTER the second network request which retrieves photo from url :)
+    cell.posterView.layer.cornerRadius = 5;
     [self.loadingIndicator stopAnimating];
     return cell;
 }
@@ -157,6 +159,7 @@
     self.searchBarLabel.showsCancelButton = NO;
     self.searchBarLabel.text = @"";
     [self.searchBarLabel resignFirstResponder];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Navigation

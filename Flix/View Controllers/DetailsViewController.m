@@ -30,6 +30,7 @@
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     [self.posterView setImageWithURL:posterURL];
+    self.posterView.layer.cornerRadius = 5;
     
     // back poster url
     NSString *backdropURLString = self.movie[@"backdrop_path"];
