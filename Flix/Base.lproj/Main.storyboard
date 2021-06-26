@@ -271,6 +271,11 @@
                                         <rect key="frame" x="0.0" y="-15" width="414" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blue_to_purp" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-tG-LlU">
+                                        <rect key="frame" x="43" y="233" width="328" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.72872823476791382" green="0.54986834526062012" blue="0.91177904605865479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A QUIET PLACE PART II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gQ-rU-ul7">
                                         <rect key="frame" x="8" y="260" width="406" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -300,11 +305,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blue_to_purp" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-tG-LlU">
-                                        <rect key="frame" x="43" y="233" width="328" height="19"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvg-hx-5PE">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="225"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.72872823476791382" green="0.54986834526062012" blue="0.91177904605865479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
+                                        <connections>
+                                            <segue destination="TFk-fg-RTn" kind="presentation" identifier="firstSegue" id="YL6-JY-b6X"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="GgS-Hc-E8T"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="aCE-b6-LHQ"/>
@@ -316,6 +323,7 @@
                     <connections>
                         <outlet property="backdropView" destination="fbq-bM-QQU" id="XP3-vm-nWO"/>
                         <outlet property="backgroundShape" destination="PDN-tG-LlU" id="4od-9g-OjH"/>
+                        <outlet property="buttonTriggerModal" destination="tvg-hx-5PE" id="trf-Yb-CKY"/>
                         <outlet property="langLabel" destination="Bat-kx-G7J" id="e7x-p1-jLY"/>
                         <outlet property="posterView" destination="8J1-eT-gS1" id="6Qf-JL-81V"/>
                         <outlet property="releaseDateLabel" destination="Bb0-OJ-Chf" id="XHc-sx-kZF"/>
@@ -327,7 +335,38 @@
             </objects>
             <point key="canvasLocation" x="1417.3913043478262" y="1573.6607142857142"/>
         </scene>
+        <!--Trailer View Controller-->
+        <scene sceneID="OG0-Sr-74C">
+            <objects>
+                <viewController id="TFk-fg-RTn" customClass="TrailerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S7H-PR-7Kw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-9X-GDg">
+                                <rect key="frame" x="0.0" y="-98" width="414" height="994"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="o9t-kF-5Q9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="trailerWebView" destination="Mjd-9X-GDg" id="ulr-R2-lLQ"/>
+                        <outlet property="webKitView" destination="Mjd-9X-GDg" id="CZy-ff-DQo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VMz-3h-CYS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2369.5652173913045" y="1573.6607142857142"/>
+        </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="blue_to_purp" width="1000" height="700"/>
         <image name="now_playing_tabbar_item" width="21" height="21"/>

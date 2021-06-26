@@ -33,6 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"purp_gradient.png"]]];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar_background"] forBarMetrics:UIBarMetricsDefault];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.searchBarLabel.delegate = self;

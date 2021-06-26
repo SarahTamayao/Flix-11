@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"purp_gradient.png"]]];
+    
     // Do any additional setup after loading the view.
     // To be used for both back and main poster
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";

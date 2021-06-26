@@ -7,6 +7,7 @@
 
 #import "DetailsPlusViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "TrailerViewController.h"
 
 @interface DetailsPlusViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backdropView;
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundShape;
 @property (weak, nonatomic) IBOutlet UILabel *langLabel;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *buttonTriggerModal;
 
 
 @end
@@ -66,14 +68,19 @@
     [self.langLabel sizeToFit];
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    // Finding index path to access the dict row
+    NSString *c_id = self.movie[@"id"];
+    
+    TrailerViewController *trailerViewController = [segue destinationViewController];
+    trailerViewController.customID = c_id;
+    
 }
-*/
+
 
 @end
