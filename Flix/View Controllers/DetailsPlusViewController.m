@@ -75,7 +75,11 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     // Finding index path to access the dict row
-    NSString *c_id = self.movie[@"id"];
+    // PROBLEM FIXED:
+    // HOW? --> The movie id was being saved as an NSString but was lacking the function to change it to a stringValue. At first I just had the c_id equal to self.movie[@"id"], however I was getting a [__NSCFNumber length]: unrecognized selector sent to instance. After finding this https://github.com/AFNetworking/AFNetworking/issues/3884 post, I realized that the compiler was recognizing this value as an NSNumber instead of an NSString. My first idea was to typecast it to an NSString by using "(NSString*)", however I was still getting the same error. I then found a function "stringValue" that I could apply to self.movie[@"id"] and it successfully saved the string + number
+
+    NSString *c_id = [self.movie[@"id"] stringValue];
+    NSLog(@"%@", c_id);
     
     TrailerViewController *trailerViewController = [segue destinationViewController];
     trailerViewController.customID = c_id;

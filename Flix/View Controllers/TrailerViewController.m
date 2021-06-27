@@ -9,7 +9,8 @@
 #import <WebKit/WebKit.h>
 
 @interface TrailerViewController ()
-@property (weak, nonatomic) IBOutlet WKWebView *trailerWebView;
+// @property (weak, nonatomic) IBOutlet WKWebView *trailerWebView;
+@property (weak, nonatomic) IBOutlet WKWebView *webKitView;
 
 @end
 
@@ -17,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //NSLog(@"%@", self.customID);
     [self fetchTrailer];
     
 
@@ -27,7 +28,7 @@
 - (void)fetchTrailer{
     // Network Request --> Upon the screen loading it immediately makes a network call
     NSString *pre_url = @"https://api.themoviedb.org/3/movie/";
-    NSString *mid_url = [pre_url stringByAppendingString:_customID];
+    NSString *mid_url = [pre_url stringByAppendingString: self.customID];
     NSString *all = [mid_url stringByAppendingString:@"/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURL *url = [NSURL URLWithString:all];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -63,16 +64,16 @@
                NSString *key = [trailer objectForKey:@"key"];
                NSString *trailerURL = [@"https://www.youtube.com/watch?v=" stringByAppendingString:key];
                
-               NSURL *trailerFinalurl = [NSURL URLWithString:@"https://www.google.com"];
+               NSURL *trailerFinalurl = [NSURL URLWithString:trailerURL];
                
                // Place the URL in a URL Request.
                NSURLRequest *request = [NSURLRequest requestWithURL:trailerFinalurl
                                                         cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                     timeoutInterval:10.0];
                // Load Request into WebView.
-               [self.trailerWebView loadRequest:request];
+               [self.webKitView loadRequest:request];
                
-               [self.trailerWebView reload];
+               [self.webKitView reload];
            }
         //[self.refreshControl endRefreshing];
        }];

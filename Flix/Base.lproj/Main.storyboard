@@ -309,7 +309,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="225"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
-                                            <segue destination="TFk-fg-RTn" kind="presentation" identifier="firstSegue" id="YL6-JY-b6X"/>
+                                            <segue destination="TFk-fg-RTn" kind="presentation" identifier="" id="YL6-JY-b6X"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -344,7 +344,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mjd-9X-GDg">
-                                <rect key="frame" x="0.0" y="-98" width="414" height="994"/>
+                                <rect key="frame" x="0.0" y="-25" width="414" height="921"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -357,8 +357,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="trailerWebView" destination="Mjd-9X-GDg" id="ulr-R2-lLQ"/>
-                        <outlet property="webKitView" destination="Mjd-9X-GDg" id="CZy-ff-DQo"/>
+                        <outlet property="webKitView" destination="Mjd-9X-GDg" id="9NZ-Dk-fJN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMz-3h-CYS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
