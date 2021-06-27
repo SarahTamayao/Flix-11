@@ -40,10 +40,12 @@ Please list two areas of the assignment you'd like to **discuss further with you
 ## Video Walkthrough
 
  ![J4ynC7N4 (1)](https://user-images.githubusercontent.com/65196174/123500280-96032800-d602-11eb-8536-9729bba252da.gif)
+ 
+ With Trailer Modal:
+ 
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/65196174/123555055-ec7a7e80-d748-11eb-8316-220010449077.gif)
 
 ## Notes
-
-Describe any challenges encountered while building the app.
 
 One of the main challenges of building this app was becoming comfortable using multiple ViewControllers. This was something entirely new for me, however doing this assignment along with the lab helped immensely. 
 
