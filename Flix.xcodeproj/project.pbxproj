@@ -24,6 +24,8 @@
 		6EE9E93F26863A7700DA3FE9 /* DetailsPlusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE9E93E26863A7700DA3FE9 /* DetailsPlusViewController.m */; };
 		6EE9E9442686BF3C00DA3FE9 /* TrailerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE9E9432686BF3C00DA3FE9 /* TrailerViewController.m */; };
 		6EE9E9452686C9D800DA3FE9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE9E9402686BF1800DA3FE9 /* WebKit.framework */; };
+		6EE9E958268CC71A00DA3FE9 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE9E957268CC71A00DA3FE9 /* Movie.m */; };
+		6EE9E95E268CDA7C00DA3FE9 /* MovieApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE9E95D268CDA7C00DA3FE9 /* MovieApiManager.m */; };
 		B5D6701510CA2506A5BA4D5C /* Pods_Flix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CE91E9FD48009014992B4A /* Pods_Flix.framework */; };
 		FA26F0103089025A1C2DFF44 /* Pods_Flix_FlixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C163FC38E45DEC4D02C933 /* Pods_Flix_FlixUITests.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +83,10 @@
 		6EE9E9402686BF1800DA3FE9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		6EE9E9422686BF3C00DA3FE9 /* TrailerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrailerViewController.h; sourceTree = "<group>"; };
 		6EE9E9432686BF3C00DA3FE9 /* TrailerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrailerViewController.m; sourceTree = "<group>"; };
+		6EE9E956268CC71A00DA3FE9 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		6EE9E957268CC71A00DA3FE9 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		6EE9E95C268CDA7C00DA3FE9 /* MovieApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieApiManager.h; sourceTree = "<group>"; };
+		6EE9E95D268CDA7C00DA3FE9 /* MovieApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieApiManager.m; sourceTree = "<group>"; };
 		B3A1AFCB50B4890723C3F756 /* Pods-FlixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlixTests.release.xcconfig"; path = "Target Support Files/Pods-FlixTests/Pods-FlixTests.release.xcconfig"; sourceTree = "<group>"; };
 		C3CE91E9FD48009014992B4A /* Pods_Flix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6010AB0D622CA5E2012F53 /* Pods-FlixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlixTests.debug.xcconfig"; path = "Target Support Files/Pods-FlixTests/Pods-FlixTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +173,8 @@
 				6EB68FA426837EE300A65766 /* LaunchScreen.storyboard */,
 				6EB68FA726837EE300A65766 /* Info.plist */,
 				6EB68FA826837EE300A65766 /* main.m */,
+				6EE9E95C268CDA7C00DA3FE9 /* MovieApiManager.h */,
+				6EE9E95D268CDA7C00DA3FE9 /* MovieApiManager.m */,
 			);
 			path = Flix;
 			sourceTree = "<group>";
@@ -203,6 +211,8 @@
 		6EB68FCF2683963200A65766 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6EE9E956268CC71A00DA3FE9 /* Movie.h */,
+				6EE9E957268CC71A00DA3FE9 /* Movie.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,6 +482,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EE9E958268CC71A00DA3FE9 /* Movie.m in Sources */,
+				6EE9E95E268CDA7C00DA3FE9 /* MovieApiManager.m in Sources */,
 				6EB68F9826837EE100A65766 /* AppDelegate.m in Sources */,
 				6EE9E8EC2683C08D00DA3FE9 /* MovieCell.m in Sources */,
 				6EE9E9442686BF3C00DA3FE9 /* TrailerViewController.m in Sources */,

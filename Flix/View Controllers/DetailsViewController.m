@@ -27,24 +27,24 @@
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     
     // main poster url
-    NSString *posterURLString = self.movie[@"poster_path"];
+    NSString *posterURLString = self.movie.posterUrl;
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     [self.posterView setImageWithURL:posterURL];
     self.posterView.layer.cornerRadius = 5;
     
     // back poster url
-    NSString *backdropURLString = self.movie[@"backdrop_path"];
+    NSString *backdropURLString = self.movie.posterUrl;
     NSString *fullbackdropURLString = [baseURLString stringByAppendingString:backdropURLString];
     NSURL *backposterURL = [NSURL URLWithString:fullbackdropURLString];
     [self.backdropView setImageWithURL:backposterURL];
     
     // set title
-    self.titleLabel.text = self.movie[@"title"];
+    self.titleLabel.text = self.movie.title;
     [self.titleLabel sizeToFit];
     
     // set synopsis
-    self.synopsisLabel.text = self.movie[@"overview"];
+    self.synopsisLabel.text = self.movie.overview_text;
     [self.synopsisLabel sizeToFit];
 }
 
