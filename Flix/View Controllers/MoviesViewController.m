@@ -27,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBarLabel;
 
-
 @end
 
 @implementation MoviesViewController
