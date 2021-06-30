@@ -54,15 +54,6 @@
     
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    // use @selector to specify which function an action calls
-    // addTarget is being applied to refreshControl
-    // forControlEvents specifies what triggers this refresh control, so in this case when refreshing event changes (someone pulls down) it starts the action
-    /*[self.refreshControl addTarget:self action:@selector() forControlEvents:UIControlEventValueChanged];*/
-    
-    // addSubview places the refreshing component on top of the current highest component
-    //[self.tableView addSubview:self.refreshControl];
-    
-    // insertSubview place the refreshing component at a specified Z index
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
