@@ -25,12 +25,12 @@ The following **optional** features are implemented:
 - [ ] Customize the navigation bar.
 - [ ] Customize the UI.
 - [ ] Run your app on a real device.
-- [ ] User can click on a poster in grid view and see a modal view of the trailer
 
 The following features are implemented:
 - [ ] An alternate details viewing screen with a different UI Layout
 - [ ] The use of a gradient background with the combination of clear table view cells
 - [ ] The manipulation of border radius to add rounded posters
+- [ ] User can click on a poster in grid view and see a modal view of the trailer
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
